@@ -1,0 +1,158 @@
+Exporter version: 6.0-beta 10, Blender version: 2.80 (sub 57)
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		texture directory   :  /Users/sergio/Downloads/Sara_Tween_Girl/sara-20110310-blender/
+	Python World class constructor completed
+	processing begun of camera (UniversalCamera):  Camera
+	processing begun of mesh:  Cornea
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.EyeM
+		num positions      :  74
+		num normals        :  74
+		num uvs            :  148
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  360
+	processing begun of mesh:  Tophair
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.HairM
+		num positions      :  189
+		num normals        :  189
+		num uvs            :  378
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  438
+	processing begun of mesh:  Backhair
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.HairM
+		registered as also a user of material:  sara2.HairM
+		num positions      :  120
+		num normals        :  120
+		num uvs            :  240
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  606
+	processing begun of mesh:  Twintails
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.HairM
+		processing begun of material:  sara2.RibbonM
+		registered as also a user of material:  sara2.HairM
+		processing begun of multimaterial:  sara2.Multimaterial#0
+		num positions      :  1220
+		num normals        :  1220
+		num uvs            :  2440
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2916
+	processing begun of mesh:  Fronthair
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.HairM
+		registered as also a user of material:  sara2.HairM
+		num positions      :  282
+		num normals        :  282
+		num uvs            :  564
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  924
+	processing begun of mesh:  Shoes
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.ShoeM
+		num positions      :  1852
+		num normals        :  1852
+		num uvs            :  3704
+		num uvs2           :  0
+		num colors         :  7408
+		num indices        :  2184
+	processing begun of mesh:  Socks
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.SocksM
+		num positions      :  628
+		num normals        :  628
+		num uvs            :  1256
+		num uvs2           :  0
+		num colors         :  2512
+		num indices        :  2292
+	processing begun of mesh:  Shirt
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.ShirtM
+		processing begun of material:  sara2.ShirtBorderM
+		processing begun of multimaterial:  sara2.Multimaterial#1
+		num positions      :  1188
+		num normals        :  1188
+		num uvs            :  2376
+		num uvs2           :  0
+		num colors         :  4752
+		num indices        :  2904
+	processing begun of mesh:  Skirt
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.SkirtM
+		num positions      :  2041
+		num normals        :  2041
+		num uvs            :  4082
+		num uvs2           :  0
+		num colors         :  8164
+		num indices        :  2058
+	processing begun of mesh:  Bra
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.BikiniM
+		num positions      :  826
+		num normals        :  826
+		num uvs            :  1652
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1098
+	processing begun of mesh:  Pantsu
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.BikiniM
+		registered as also a user of material:  sara2.BikiniM
+		num positions      :  540
+		num normals        :  540
+		num uvs            :  1080
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  924
+	processing begun of mesh:  Eyeballs
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.EyeM
+		registered as also a user of material:  sara2.EyeM
+		num positions      :  194
+		num normals        :  194
+		num uvs            :  388
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1080
+	processing begun of mesh:  Body
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.BodyM
+		processing begun of material:  sara2.FaceM
+		processing begun of multimaterial:  sara2.Multimaterial#2
+		num positions      :  54756
+		num normals        :  54756
+		num uvs            :  109512
+		num uvs2           :  0
+		num colors         :  219024
+		num indices        :  283104
+	processing begun of mesh:  Eyelashes
+		WARNING: No skeleton with name "Armature" found skeleton ignored.
+		processing begun of material:  sara2.EyelashesM
+		num positions      :  240
+		num normals        :  240
+		num uvs            :  480
+		num uvs2           :  0
+		num colors         :  960
+		num indices        :  240
+	processing begun of light (POINT):  Lamp.003
+	processing begun of light (POINT):  Lamp.000
+	processing begun of light (POINT):  Lamp.002
+	processing begun of light (POINT):  Lamp.001
+========= Writing of JSON file started =========
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 9.7721 secs
