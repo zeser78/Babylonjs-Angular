@@ -57,9 +57,9 @@ export class BuilderService {
     let myPaths = [];
 
     let deltaTheta = 0.1;
-    let deltaY = 0.005; // how big is the distance between spiral
+    let deltaY = -0.05; // how big is the distance between spiral
 
-    let radius = 1; // radius of the spiral
+    let radius = 9; // radius of the spiral
     let theta = 0.5;
     let y = 0;
     for (let i = 0; i < 400; i++) {
@@ -79,7 +79,7 @@ export class BuilderService {
       "spiral",
       {
         path: myPaths,
-        radius: 0.1,
+        radius: 1,
         tessellation: 6,
         arc: 0.75,
         sideOrientation: BABYLON.Mesh.DOUBLESIDE
@@ -87,8 +87,8 @@ export class BuilderService {
       this.scene
     );
 
-    // tube.position.z = 10;
     tube.position.x = 20;
+    tube.position.y = 10;
     this.ringMaterial = new BABYLON.StandardMaterial(
       "ringMaterial",
       this.scene
@@ -97,6 +97,8 @@ export class BuilderService {
     this.ringMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 
     tube.material = this.ringMaterial;
+
+    // Tube end
   }
 
   makeSphere() {
