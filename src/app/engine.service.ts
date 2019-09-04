@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ElementRef } from "@angular/core";
 import * as BABYLON from "babylonjs";
 import "babylonjs-materials";
 
@@ -9,17 +9,18 @@ export class EngineService {
   private canvas: HTMLCanvasElement;
   private engine: BABYLON.Engine;
   private camera: BABYLON.ArcRotateCamera;
-  private scene: BABYLON.Scene;
+  public scene: BABYLON.Scene;
   private light: BABYLON.Light;
   public loader: BABYLON.SceneLoader;
   private plane: any;
 
   private sphere: BABYLON.Mesh;
 
-  createScene(elementId: string): void {
+  // createScene(elementId: string): void {
+  createScene(canvas: ElementRef<HTMLCanvasElement>): void {
     // The first step is to get the reference of the canvas element from our HTML document
-    this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
-
+    // this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
+    this.canvas = canvas.nativeElement;
     // Then, load the Babylon 3D engine:
     this.engine = new BABYLON.Engine(this.canvas, true);
 
@@ -41,7 +42,7 @@ export class EngineService {
     this.camera.setTarget(BABYLON.Vector3.Zero());
 
     // attach the camera to the canvas
-    this.camera.attachControl(this.canvas, false);
+    this.camera.attachControl(this.canvas, true);
 
     // create a basic light, aiming 0,1,0 - meaning, to the sky
     this.light = new BABYLON.HemisphericLight(
@@ -49,41 +50,6 @@ export class EngineService {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
-
-    // create a built-in "sphere" shape; its constructor takes 4 params: name, subdivisions, radius, scene
-    // this.sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, this.scene);
-
-    // create the material with its texture for the sphere and assign it to the sphere
-    // let spherMaterial = new BABYLON.StandardMaterial("sun_surface", this.scene);
-    // let spherMaterial = new BABYLON.StandardMaterial("sun_surface", this.scene);
-    // spherMaterial.diffuseColor = new BABYLON.Color3(
-    //   1,
-    //   105 / 255,
-    //   180 / 255
-    //   //   this.scene
-    // );
-    // spherMaterial.specularColor = new BABYLON.Color3(0, 0, 1);
-    // this.sphere.material = spherMaterial;
-    // spherMaterial.diffuseTexture = new BABYLON.Texture(
-    //   "assets/models/ring.jpg",
-    //   this.scene
-    // );
-
-    // spherMaterial.alpha = 0.2;
-    // this.sphere.material = spherMaterial;
-
-    // move the sphere upward 1/2 of its height
-    // this.sphere.position.y = 1;
-
-    // simple rotation along the y axis
-    // let angle = 0.02;
-    // this.scene.registerAfterRender(() => {
-    //   this.sphere.rotate(
-    //     new BABYLON.Vector3(0, 1, 0),
-    //     0.02,
-    //     BABYLON.Space.LOCAL
-    //   );
-    // });
 
     // generates the world x-y-z axis for better understanding
     this.showWorldAxis(8);
@@ -139,20 +105,16 @@ export class EngineService {
       // Load character
       "",
       "../assets/model/sara/",
-      "sara2.babylon",
+      "Sara.babylon",
       this.scene,
       scene => {
-        // (meshes, particleSystems, skeletons) => {
-        // Create a default arc rotate camera and light.
-        // scene.createDefaultCameraOrLight(true, true, true);
-        //     meshes = new BABYLON.Texture(
-        // "assets/models/ring.jpg",
-        // this.scene,
-        // );
-        //   // meshes.forEach(mesh => {
-        //   //   mesh.scaling = mesh.scaling.multiply(
-        //   //     new BABYLON.Vector3(0.4, 0.4, 0.4)
-        // );
+        (meshes, particleSystems, skeletons) => {
+          // Create a default arc rotate camera and light.
+          // scene.createDefaultCameraOrLight(true, true, true);
+          // this.scene.meshes[2].position.addInPlace(
+          //   new BABYLON.Vector3(10, 0, 0)
+          // );
+        };
       }
     );
 
@@ -195,17 +157,20 @@ export class EngineService {
     // this._box.material = boxMaterial;
   }
   animate(): void {
-    const $scope = this;
-
-    window.addEventListener("DOMContentLoaded", () => {
-      $scope.engine.runRenderLoop(() => {
-        $scope.scene.render();
-      });
+    this.engine.runRenderLoop(() => {
+      this.scene.render();
     });
+    // const $scope = this;
 
-    window.addEventListener("resize", () => {
-      $scope.engine.resize();
-    });
+    // window.addEventListener("DOMContentLoaded", () => {
+    //   $scope.engine.runRenderLoop(() => {
+    //     $scope.scene.render();
+    //   });
+    // });
+
+    // window.addEventListener("resize", () => {
+    //   $scope.engine.resize();
+    // });
   }
 
   /**

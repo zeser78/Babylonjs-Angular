@@ -1,0 +1,35 @@
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  /* align-content: space-around; */
+  align-items: center;
+  justify-content: space-evenly;
+
+  /* width: 50%; */
+}
+nav > h1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* With ">" is just the child  */
+ul > li {
+  /* flex: auto; */
+  color: #3d3b3b;
+  list-style: none;
+  justify-content: space-between;
+  /* align-content: space-around; */
+  /* align-items: center; */
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* With space is descendent, everybody below */
+ul ol {
+  color: white;
+}
+/* nav {
+  justify-content: center;
+  width: 50%;
+} */
