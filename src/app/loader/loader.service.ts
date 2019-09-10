@@ -5,7 +5,7 @@ import "babylonjs-materials";
 @Injectable({
   providedIn: "root"
 })
-export class EngineService {
+export class LoaderService {
   private canvas: HTMLCanvasElement;
   private engine: BABYLON.Engine;
   private camera: BABYLON.ArcRotateCamera;
@@ -16,10 +16,9 @@ export class EngineService {
 
   private sphere: BABYLON.Mesh;
 
-  // createScene(elementId: string): void {
   createScene(canvas: ElementRef<HTMLCanvasElement>): void {
     // The first step is to get the reference of the canvas element from our HTML document
-    // this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
+
     this.canvas = canvas.nativeElement;
     // Then, load the Babylon 3D engine:
     this.engine = new BABYLON.Engine(this.canvas, true);
@@ -50,57 +49,11 @@ export class EngineService {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
-
     // generates the world x-y-z axis for better understanding
     this.showWorldAxis(8);
-    // this.createSkybox();
   }
 
-  // this.loader = BABYLON.SceneLoader.Append(
-  //   "../assets/models/",
-  //   "test2.babylon",
   loaderer() {
-    ///
-    // BABYLON.SceneLoader.Load(
-    //   "./",
-    //   "awesome_scene.babylon",
-    //   this.engine,
-    //   (scene: BABYLON.Scene) => {
-    //     // Success calblack
-    //     this.scene = scene;
-
-    //     // We can now access the scene.meshes array etc.
-    //     // Decal the meshes to 10 units on X
-    //     for (var i = 0; i < this.scene.meshes.length; i++) {
-    //       this.scene.meshes[i].position.addInPlace(
-    //         new BABYLON.Vector3(10, 0, 0)
-    //       );
-    //     }
-
-    //     // Just append the same scene
-    //     // this._appendScene();
-    //   },
-    //   () => {
-    //     // Progress callback
-    //     // Do something with your web page :)
-    //   },
-    //   (scene: BABYLON.Scene) => {
-    //     // Error callback
-    //   }
-    // );
-    //
-    // this.loader = BABYLON.SceneLoader.ImportMesh(
-    //   "",
-    //   "../assets/models/",
-    //   "skull.babylon",
-    //   this.scene,
-    //   (meshes, particleSystems, skeletons) => {
-    //     // this.scene.createDefaultCameraOrLight(true, true, true);
-    //     this.scene.clearColor = new BABYLON.Color4(1, 1, 1, 0.2);
-    //     this.scene.beginAnimation(skeletons[0], 0, 150, true, 1.0);
-    //   }
-    // );
-
     this.loader = BABYLON.SceneLoader.ImportMesh(
       // Load character
       "",
@@ -108,34 +61,15 @@ export class EngineService {
       "Sara.babylon",
       this.scene,
       scene => {
-        (meshes, particleSystems, skeletons) => {
-          // Create a default arc rotate camera and light.
-          // scene.createDefaultCameraOrLight(true, true, true);
-          // this.scene.meshes[2].position.addInPlace(
-          //   new BABYLON.Vector3(10, 0, 0)
-          // );
-        };
+        (meshes, particleSystems, skeletons) => {};
       }
     );
-
-    // Both must write "true" in the console
-    //     console.log(skeletons.length === 1);
-    //     console.log(this.scene.getSkeletonByName("Skeleton0") === skeletons[0]);
-
-    //     // Simply begin the animations of the skeleton
-    //     // To remember, a skeleton has multiple bones, where each bone
-    //     // as a list of animations of type BABYLON.Animation
-    //     this.scene.beginAnimation(skeletons[0], 0, 150, true, 1.0);
-    //   }
-    // );
 
     var diffuseTexture = new BABYLON.Texture(
       "../assets/model/dude/floor_diffuse.png",
       this.scene
     );
     diffuseTexture.vScale = diffuseTexture.uScale = 5.0;
-
-    // var boxTexture = new BABYLON.Texture("wood.jpg", this.scene);
 
     // Materials
     var planeMaterial = new BABYLON.StandardMaterial(
@@ -144,33 +78,14 @@ export class EngineService {
     );
     planeMaterial.diffuseTexture = diffuseTexture;
 
-    // var boxMaterial = new BABYLON.StandardMaterial("box_material", this._scene);
-    // boxMaterial.diffuseTexture = boxTexture;
-
     // Meshes
     this.plane = BABYLON.Mesh.CreateGround("ground", 100, 100, 2, this.scene);
     this.plane.material = planeMaterial;
-
-    // this._box = BABYLON.Mesh.CreateBox("box", 5, this.scene);
-    // this._box.refreshBoundingInfo();
-    // this._box.position.y = 2.5;
-    // this._box.material = boxMaterial;
   }
   animate(): void {
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
-    // const $scope = this;
-
-    // window.addEventListener("DOMContentLoaded", () => {
-    //   $scope.engine.runRenderLoop(() => {
-    //     $scope.scene.render();
-    //   });
-    // });
-
-    // window.addEventListener("resize", () => {
-    //   $scope.engine.resize();
-    // });
   }
 
   /**

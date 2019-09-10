@@ -5,7 +5,7 @@ import {
   ViewChild,
   AfterViewInit
 } from "@angular/core";
-import { EngineService } from "../engine.service";
+import { LoaderService } from "./loader.service";
 
 @Component({
   selector: "app-loader",
@@ -14,10 +14,10 @@ import { EngineService } from "../engine.service";
 })
 export class LoaderComponent implements OnInit, AfterViewInit {
   // private canElementId = "renderCanvas";
-  @ViewChild("renderCanvas")
+  @ViewChild("renderCanvas", { static: true })
   public renderCanvas: ElementRef<HTMLCanvasElement>;
 
-  constructor(private engService: EngineService) {}
+  constructor(private engService: LoaderService) {}
 
   ngOnInit() {}
 

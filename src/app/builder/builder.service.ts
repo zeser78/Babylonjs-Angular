@@ -14,13 +14,13 @@ export class BuilderService {
   public loader: BABYLON.SceneLoader;
   private plane: any;
   private ringMaterial: any;
+  private woodMaterial: any;
   private sphere: BABYLON.Mesh;
 
   constructor() {}
 
   createScene(canvas: ElementRef<HTMLCanvasElement>): void {
     // The first step is to get the reference of the canvas element from our HTML document
-    // this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
     this.canvas = canvas.nativeElement;
     // Then, load the Babylon 3D engine:
     this.engine = new BABYLON.Engine(this.canvas, true);
@@ -51,9 +51,9 @@ export class BuilderService {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
-    this.makeSphere();
+    this.createConeSphere();
 
-    // Create Spiral Line and Tube
+    // Create line for the Spiral
     let myPaths = [];
 
     let deltaTheta = 0.1;
@@ -74,14 +74,14 @@ export class BuilderService {
       y += deltaY;
     }
 
-    // Create tube
+    // Create Tube, area of the spiral (6 sides, no circular)
     let tube = BABYLON.MeshBuilder.CreateTube(
       "spiral",
       {
         path: myPaths,
         radius: 1,
-        tessellation: 6,
-        arc: 0.75,
+        tessellation: 6, // sides
+        arc: 0.75, // 75% circle completed
         sideOrientation: BABYLON.Mesh.DOUBLESIDE
       },
       this.scene
@@ -89,29 +89,41 @@ export class BuilderService {
 
     tube.position.x = 20;
     tube.position.y = 10;
-    this.ringMaterial = new BABYLON.StandardMaterial(
-      "ringMaterial",
+
+    let sphere = BABYLON.MeshBuilder.CreateIcoSphere(
+      "icoSphere",
+      { radius: 10 },
       this.scene
     );
-    this.ringMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0);
-    this.ringMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 
-    tube.material = this.ringMaterial;
-
+    sphere.position.x = -20;
+    this.woodMaterial = new BABYLON.StandardMaterial(
+      "woodMaterial",
+      this.scene
+    );
+    this.woodMaterial.diffuseTexture = new BABYLON.Texture(
+      "assets/model/dude/wood.jpg",
+      this.scene
+    );
+    sphere.material = this.woodMaterial;
     // Tube end
   }
 
-  makeSphere() {
+  createConeSphere() {
+    /**
+     * creates the ConeSphere
+     *
+     * Source: https://doc.babylonjs.com/resources/maths_make_ribbons
+     */
+
     let ringRadius = 10;
     let paths = [];
     let pi2 = Math.PI * 2;
     let step = pi2 / 60; // we want 60 points
 
     for (let p = -Math.PI / 2; p < Math.PI / 2 - 1.5; p += step / 2) {
-      // creating
-      // for (let p = -Math.PI / 2; p < Math.PI / 2; p += step / 2) { // to sphere
       let path = [];
-      // to create circles on norht ansd south
+
       for (let i = 0; i < pi2; i += step) {
         // to create just one circle
         let x = ringRadius * Math.sin(i) * Math.cos(p);
@@ -119,18 +131,17 @@ export class BuilderService {
         let y = ringRadius * Math.sin(p);
         path.push(new BABYLON.Vector3(x, y, z));
       }
-      // path.push(path[0]);
-      paths.push(path);
 
-      // let circle = BABYLON.Mesh.CreateLines("circle", path, this._scene);
+      paths.push(path);
     }
+
     let lastPath = [];
     for (let j = 0; j < pi2; j += step) {
       lastPath.push(new BABYLON.Vector3(0, ringRadius, 0));
     }
     paths.push(lastPath);
 
-    let makeSphere = BABYLON.Mesh.CreateRibbon(
+    let createConeSphere = BABYLON.Mesh.CreateRibbon(
       "sph",
       paths,
       false,
@@ -146,7 +157,7 @@ export class BuilderService {
     this.ringMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0);
     this.ringMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 
-    makeSphere.material = this.ringMaterial;
+    createConeSphere.material = this.ringMaterial;
   }
 
   animate(): void {

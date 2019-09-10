@@ -13,7 +13,7 @@ import { BuilderService } from "./builder.service";
   styleUrls: ["./builder.component.css"]
 })
 export class BuilderComponent implements OnInit, AfterViewInit {
-  @ViewChild("renderCanvas")
+  @ViewChild("renderCanvas", { static: true })
   public renderCanvas: ElementRef<HTMLCanvasElement>;
 
   constructor(private builderService: BuilderService) {}
