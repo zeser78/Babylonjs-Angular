@@ -1,5 +1,7 @@
 # BabylonJS with Angular
 
+Here some examples of no regular geometrics figure models designed with BabylonJS and loading external model.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
 ## Development server
