@@ -66,7 +66,7 @@ export class LoaderService {
     );
 
     var diffuseTexture = new BABYLON.Texture(
-      "../assets/model/dude/floor_diffuse.png",
+      "../assets/model/sara/floor_diffuse.png",
       this.scene
     );
     diffuseTexture.vScale = diffuseTexture.uScale = 5.0;
